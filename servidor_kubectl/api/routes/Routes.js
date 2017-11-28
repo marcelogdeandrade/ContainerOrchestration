@@ -1,15 +1,15 @@
 module.exports = function (app) {
-  var Test = require('../controllers/Test');
+  var Controller = require('../controllers/Controller');
 
   app.route('/getService')
-    .get(Test.test)
+    .get(Controller.getDeployment)
 
   app.route('/adduser')
-    .post(Test.adduser)
+    .post(Controller.adduser)
 
   app.route('/createService')
-    .post(Test.addDeployent)
+    .post(Controller.addDeployent)
 
   app.route('/deleteService')
-    .post(Test.deleteDeployment)
+    .post(Controller.deleteDeployment)
 };

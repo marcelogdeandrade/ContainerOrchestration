@@ -30,8 +30,9 @@ def get_service(**kwargs):
         with open(config_path, 'r') as output:
             _id = output.readline().strip().split('=')[1]
             username = output.readline().strip().split('=')[1]
+            password = output.readline().strip().split('=')[1]
             response = requests.get(
-                url, headers=headers, data=json.dumps({'username': username}))
+                url, headers=headers, data=json.dumps({'username': username, 'password': password}))
             click.echo(response.text)
 
 #Credentials config
@@ -47,14 +48,13 @@ def configure(username, password):
     response = requests.post(url, headers=headers, data=json.dumps({'username': username, 'password': password}))
     if (response.status_code == 200):
         data = json.loads(response.content)
-        text = _format_config_file(data['_id'], data['username'])
+        text = _format_config_file(data['_id'], data['username'], password)
         with open(config_path, 'w') as output:
             output.write(text)
         click.echo('Usuario criado com sucesso!')
     elif (response.status_code == 400):
-        data = json.loads(response.content)
         click.echo('Houve um erro ao criar o usuario.')
-        click.echo(data['errmsg'])
+        click.echo(response.text)
 
 #Add Service
 @all.command()
@@ -66,7 +66,8 @@ def create_service(username):
         with open(config_path, 'r') as output:
             _id = output.readline().strip().split('=')[1]
             username = output.readline().strip().split('=')[1]
-            response = requests.post(url, headers=headers, data=json.dumps({'username': username}))
+            password = output.readline().strip().split('=')[1]
+            response = requests.post(url, headers=headers, data=json.dumps({'username': username, 'password': password}))
             click.echo(response.text)
 
 #Delete Service
@@ -79,16 +80,17 @@ def delete_service(username):
         with open(config_path, 'r') as output:
             _id = output.readline().strip().split('=')[1]
             username = output.readline().strip().split('=')[1]
+            password = output.readline().strip().split('=')[1]
             response = requests.post(
-                url, headers=headers, data=json.dumps({'username': username}))
+                url, headers=headers, data=json.dumps({'username': username, 'password': password}))
             click.echo(response.text)
 
 #Auxiliary functions
 def _check_config_exists():
     return os.path.isfile(config_path)
 
-def _format_config_file(id, username):
-    return "id={0}\nusername={1}\n".format(id, username)
+def _format_config_file(id, username, password):
+    return "id={0}\nusername={1}\npassword={2}".format(id, username, password)
 
 if __name__ == '__main__':
     if not os.path.exists(directory):
