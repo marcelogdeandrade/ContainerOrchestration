@@ -40,6 +40,7 @@ exports.getDeployment = function (req, res) {
 };
 
 exports.adduser = function (req, res) {
+  console.log("Called Add User")
   const body = req.body
   const validation = validateUser(body)
   if (validation){

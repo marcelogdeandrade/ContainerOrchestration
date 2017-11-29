@@ -6,6 +6,9 @@ aws s3api create-bucket --bucket kubernetes-aws-io-marcelo
 #Adicionar versionamento no cluster
 aws s3api put-bucket-versioning --bucket kubernetes-aws-io-marcelo --versioning-configuration Status=Enabled
 
+#Criar volume para utilização futura do MongoDB
+aws ec2 create-volume --size 200 --region us-west-2 --availability-zone us-west-2a
+
 #Criar variavel de ambiente para acesso ao bucket
 export KOPS_STATE_STORE=s3://kubernetes-aws-io-marcelo
 

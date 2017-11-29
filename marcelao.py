@@ -8,7 +8,7 @@ import pprint
 import os
 import os.path
 
-base = 'http://localhost:3000/'
+base = 'http://aa6867f12d4f211e79c8302b5c4cd67f-1505641876.us-west-2.elb.amazonaws.com:3000/'
 headers = {'Content-type': 'application/json'}
 
 filename = "config"

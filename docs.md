@@ -129,6 +129,35 @@ node-web-app   Deployment/node-web-app   0% / 50%             1         5       
 - `$ kubectl autoscale deployment node-web-app --cpu-percent=50 --min=3 --max=5`
 
 
+## Criando instancia do MongoDB
+
+1. Uma alternativa simples é usar o serviço mLab.
+ 
+2. Criar volume na AWS para ser usado no kubernetes
+- `$ aws ec2 create-volume --size 200 --region us-west-2 --availability-zone us-west-2a`
+
+3. Criar o RC do Mongo a partir do arquivo yaml.
+- `$ kubectl create -f mongo.yaml`
+
+4. Criar serviço para expor o mongo a todo o cluster com o nome de mongo
+- `$ kubectl expose rc mongo-controller --port=27017 --name=mongo`
+
+## Deploy da API no Cluster
+
+1. Fazer o deploy após criar a instancia do Mongo
+
+2. Dar deploy da imagem
+- `$ kubectl run api --image=docker.io/marcelogdeandrade/projeto-cloud-api --port=3000`
+
+3. Criar serviço de LoadBalancer para acesso externo da API
+- `$ kubectl expose deployment api --type=LoadBalancer --name=api`
+
+4. Para acessar a API, veja o valor de LoadBalancer Ingress no seguinte comando:
+- `$ kubectl describe service api`
+
+5. Trocar endpoint to cliente para o endpoint visto acima.
+
+
 ## Passos futuros
 
 1. Configurar deploys de Pods e Serviços através de um arquivo .yaml
