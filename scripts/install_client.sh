@@ -4,10 +4,10 @@
 sudo pip install click
 
 #Baixar client
-wget https://raw.githubusercontent.com/marcelogdeandrade/ContainerOrchestrationProject/master/marcelao.py
+wget https://raw.githubusercontent.com/marcelogdeandrade/ContainerOrchestrationProject/master/banana
 
 #Transformar client em executavel
-chmod +x marcelao.py
+chmod +x banana
 
 #Mover cliente
-sudo mv marcelao.py /usr/local/bin
+sudo mv banana /usr/local/bin

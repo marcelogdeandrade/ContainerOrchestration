@@ -66,7 +66,7 @@ $ kops create cluster \
 
 * Imagem exemplo: marcelogdeandrade/node-web-app
 
-1. `$ kubectl run node-web-app --image=marcelogdeandrade/node-web-app --port=8081`
+1. `$ kubectl run node-web-app --image=docker.io/marcelogdeandrade/node-web-app --port=8081`
 
 2. Para fazer um port-forward de uma porta local para a porta 8081 do pod (porta que o servidor está rodando)
 - nome do pod = node-web-app-2024651897-7w2dj
@@ -83,7 +83,7 @@ $ kops create cluster \
 - `$ kubectl create -f deploy/kube-config/rbac/heapster-rbac.yaml`
 
 2. Dar deploy em uma aplicação com expose e definição de recursos da CPU
-- `$ kubectl run node-web-app --image=marcelogdeandrade/node-web-app --port=8081 --requests=cpu=200m`
+- `$ kubectl run node-web-app --image=docker.io/marcelogdeandrade/node-web-app --port=8081 --requests=cpu=200m`
 
 3. Ativar autoscale no deployment desejado
 - `$ kubectl autoscale deployment node-web-app --cpu-percent=50 --min=1 --max=5`
@@ -103,7 +103,7 @@ node-web-app   Deployment/node-web-app   0% / 50%             1         5       
 ## Configurando o LoadBalancer
 
 1. Dar deploy de uma aplicação com 3 replicas.
-- `$ kubectl run node-web-app --image=marcelogdeandrade/node-web-app --port=8081 --replicas=3`
+- `$ kubectl run node-web-app --image=docker.io/marcelogdeandrade/node-web-app --port=8081 --replicas=3`
 
 2. Dar expose no deployment com tipo LoadBalancer
 
@@ -118,7 +118,7 @@ node-web-app   Deployment/node-web-app   0% / 50%             1         5       
 ## Juntando LoadBalancer com Horizontal Pod Autoscaler
 
 1. Dar deploy de uma aplicação com 3 replicas e definição de recursos
-- `$ kubectl run node-web-app --image=marcelogdeandrade/node-web-app --port=8081 --requests=cpu=200m --replicas=3`
+- `$ kubectl run node-web-app --image=docker.io/marcelogdeandrade/node-web-app --port=8081 --requests=cpu=200m --replicas=3`
 
 2. Dar expose no deployment com tipo LoadBalancer
 
@@ -129,7 +129,7 @@ node-web-app   Deployment/node-web-app   0% / 50%             1         5       
 - `$ kubectl autoscale deployment node-web-app --cpu-percent=50 --min=3 --max=5`
 
 
-## Criando instancia do MongoDB
+## Deploy do MongoDB no Cluster
 
 1. Uma alternativa simples é usar o serviço mLab.
  
@@ -175,4 +175,14 @@ node-web-app   Deployment/node-web-app   0% / 50%             1         5       
 
 - full_install_cluster.sh (Esperar alguns minutos até o cluster iniciar)
 - install_cluster_dependencies.sh
+- install_mongodb.sh
 - install_api.sh
+- install_client.sh
+
+1. Caso ja tenha feito a primeira instalação do cluster e queira iniciá-lo novamente, substitua o script de `full_install_cluster.sh` por `start_cluster.sh`.
+
+- start_cluster.sh (Esperar alguns minutos até o cluster iniciar)
+- install_cluster_dependencies.sh
+- install_mongodb.sh
+- install_api.sh
+- install_client.sh
