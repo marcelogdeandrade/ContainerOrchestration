@@ -9,7 +9,7 @@ import os
 import os.path
 
 #Endpoint para a API
-base = 'http://192.168.99.100:30906/'
+base = 'http://a91d51e33d61211e794eb02e3238d16d-902563938.us-west-2.elb.amazonaws.com:3000/'
 headers = {'Content-type': 'application/json'}
 
 filename = "config"
@@ -18,14 +18,14 @@ config_path = os.path.join(directory, filename)
 
 @click.group()
 def all():
-    """CLI para gerencimento dos servicos"""
+    """CLI para gerencimento dos serviços"""
     pass
 
 
 #Get Service
 @all.command()
 def get_service(**kwargs):
-    """Retorna inforações do serviço"""
+    """Retorna informações do serviço"""
     url = base + 'getService'
     if(_check_config_exists()):
         with open(config_path, 'r') as output:
@@ -34,7 +34,10 @@ def get_service(**kwargs):
             password = output.readline().strip().split('=')[1]
             response = requests.get(
                 url, headers=headers, data=json.dumps({'username': username, 'password': password}))
-            click.echo(response.text)
+            click.echo(response.content)
+    else:
+        click.echo("Usuario não encontrado. Se cadastre no serviço usando banana configure")
+
 
 #Credentials config
 @all.command()
@@ -42,7 +45,7 @@ def get_service(**kwargs):
 @click.option('--password', prompt=True, hide_input=True,
               confirmation_prompt=True, help='Senha desejada')
 def configure(username, password):
-    """Cadastra um usuario no servico"""
+    """Cadastra um usuário no serviço"""
     if(_check_config_exists()):
         click.confirm('Ja foi cadastrado um usuario, voce quer sobreescrever o usuario existente?', abort=True)
     url = base + 'adduser'
@@ -59,7 +62,7 @@ def configure(username, password):
 
 #Add Service
 @all.command()
-def create_service(username):
+def create_service():
     """Cria um serviço com Load Balancer e Escalabilidade Horizontal"""
     url = base + 'createService'
     if(_check_config_exists()):
@@ -72,7 +75,7 @@ def create_service(username):
 
 #Delete Service
 @all.command()
-def delete_service(username):
+def delete_service():
     """Deleta um serviço criado"""
     url = base + 'deleteService'
     if(_check_config_exists()):
@@ -83,6 +86,8 @@ def delete_service(username):
             response = requests.post(
                 url, headers=headers, data=json.dumps({'username': username, 'password': password}))
             click.echo(response.text)
+    else:
+        click.echo("Usuario não encontrado. Se cadastre no serviço usando banana configure")
 
 #Auxiliary functions
 def _check_config_exists():

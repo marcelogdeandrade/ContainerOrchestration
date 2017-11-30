@@ -22,7 +22,7 @@ exports.getDeployment = function (req, res) {
             res.status(400)
             res.send('Senha errada')
           } else {
-            kubectl.command(`describe deployment -l user=${username}`)
+            kubectl.command(`get service --output=wide -l user=${username}`)
               .then(data => {
                 res.status(200)
                 res.send(data)

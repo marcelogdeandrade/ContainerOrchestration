@@ -23,7 +23,7 @@ spec:
               mountPath: /data/db
       volumes:
         - name: mongo-persistent-storage
-          emptyDir: {}
-          # awsElasticBlockStore:
-          #   volumeID: vol-01f971dc8cdb0a815
-          #   fsType: ext4
+          # emptyDir: {}
+          awsElasticBlockStore:
+            volumeID: vol-01f971dc8cdb0a815
+            fsType: ext4
