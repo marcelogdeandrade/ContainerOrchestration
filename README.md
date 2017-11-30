@@ -90,7 +90,9 @@ banana delete_service
 ## Imagens Docker Utilizadas
 
 [API](https://hub.docker.com/r/marcelogdeandrade/projeto-cloud-api/)
+
 [Mongo](https://hub.docker.com/_/mongo/)
+
 [Aplicação](https://hub.docker.com/r/marcelogdeandrade/node-web-app/)
 
 ## Autores
