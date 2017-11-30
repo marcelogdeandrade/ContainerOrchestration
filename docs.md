@@ -161,6 +161,10 @@ node-web-app   Deployment/node-web-app   0% / 50%             1         5       
 ## Passos futuros
 
 1. Configurar deploys de Pods e Serviços através de um arquivo .yaml
+2. Adicionar novas funcionalidade ao CLI e a API
+3. Customizar scripts de criação para melhor utilização de terceiros
+4. Criar Dashboard para utilização do cliente como complemento ou substituição da CLI
+5. Criar novos tipos de serviços disponíveis com mais complexidade
 
 # RODAR PROJETO A PARTIR DOS SCRIPTS
 
