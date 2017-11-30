@@ -41,7 +41,8 @@ A comunicação da CLI com o cluster é feita através de uma API utilizando Nod
 
 5. Client
 
-Os clientes devem seguir somente essa etapa, para instalar o CLI do serviço, rode o script `install_client.sh`. 
+Os clientes devem seguir somente essa etapa, para instalar o CLI do serviço, rode o script `install_client.sh`.
+
 **PS: Troque o endpoint da API localizado dentro da CLI na variavél `base` pela seu próprio endpoint**
 
 Para encontrar o endpoint de sua api, rode o comando:
@@ -51,3 +52,11 @@ $ kubectl get service api --output=wide`
 O endpoint estará no campo *EXTERNAL-IP*, complete o URL com a porta 3000.
 
 Endpoint exemplo: http://a91d51e33d61211e794eb02e3238d16d-902563938.us-west-2.elb.amazonaws.com:3000/
+
+## Autores
+
+* **Marcelo G. de Andrade**
+
+## Licença
+
+Esse projeto é licenciado pela licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
