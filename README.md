@@ -64,19 +64,21 @@ $ banana --help
 Para criar um novo usuário, rode:
 
 ```
-banana configure
+$ banana configure
 ```
+
+As configuraçes de usuário ficam salvas no arquivo *config* localizado em *~/.banana/*
 
 Para dar deploy em um novo serviço:
 
 ```
-banana create_service
+$ banana create_service
 ```
 
 Para buscar informaçes desse serviço, como a URL:
 
 ```
-banana get_service
+$ banana get_service
 ```
 
 E para remover o serviço:
