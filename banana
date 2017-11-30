@@ -9,7 +9,7 @@ import os
 import os.path
 
 #Endpoint para a API
-base = 'http://192.168.99.100:31883/'
+base = 'http://192.168.99.100:30906/'
 headers = {'Content-type': 'application/json'}
 
 filename = "config"
@@ -59,7 +59,6 @@ def configure(username, password):
 
 #Add Service
 @all.command()
-@click.option('--username', help='Username do usuario')
 def create_service(username):
     """Cria um serviço com Load Balancer e Escalabilidade Horizontal"""
     url = base + 'createService'
@@ -73,7 +72,6 @@ def create_service(username):
 
 #Delete Service
 @all.command()
-@click.option('--username', help="Username do usuario")
 def delete_service(username):
     """Deleta um serviço criado"""
     url = base + 'deleteService'
