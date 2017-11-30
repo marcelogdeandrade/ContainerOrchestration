@@ -53,6 +53,40 @@ O endpoint estará no campo *EXTERNAL-IP*, complete o URL com a porta 3000.
 
 Endpoint exemplo: http://a91d51e33d61211e794eb02e3238d16d-902563938.us-west-2.elb.amazonaws.com:3000/
 
+## CLI
+
+Após a instalaço da CLI e substituiço do endpoint da API, rode o seguinte comando para mais informações:
+
+```
+$ banana --help
+```
+
+Para criar um novo usuário, rode:
+
+```
+banana configure
+```
+
+Para dar deploy em um novo serviço:
+
+```
+banana create_service
+```
+
+Para buscar informaçes desse serviço, como a URL:
+
+```
+banana get_service
+```
+
+E para remover o serviço:
+
+```
+banana delete_service
+```
+
+
+
 ## Autores
 
 * **Marcelo G. de Andrade**
