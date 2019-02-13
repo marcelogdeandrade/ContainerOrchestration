@@ -1,4 +1,4 @@
-# ContainerOrchestrationProject
+# ContainerOrchestration
 
 Um projeto de orquestrador de serviços utilizando o Kubernetes como framework para criaçao de clusters com containers.
 
